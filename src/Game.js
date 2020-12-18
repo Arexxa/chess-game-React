@@ -1,9 +1,10 @@
 import * as Chess from 'chess.js'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject } from 'rxjs' 
+//BehaviorSubject: a varinat of subject that require an initial value and emits its current value whenever it is subscribes to.
 
 
 
-const chess = new Chess()
+const chess = new Chess() // initialize chess game
 
 export const gameSubject = new BehaviorSubject()
 
@@ -51,7 +52,7 @@ function updateGame(pendingPromotion) {
     const isGameOver = chess.game_over()
 
     const newGame = {
-        board: chess.board(),
+        board: chess.board(),   //chess board will save in array ;row & column
         pendingPromotion,
         isGameOver,
         turn: chess.turn(),

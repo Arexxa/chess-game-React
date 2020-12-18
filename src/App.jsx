@@ -10,16 +10,21 @@ function App() {
   const [turn, setTurn] = useState()
   useEffect(() => {
     initGame()
-    const subscribe = gameSubject.subscribe((game) => {
+    const subscribe = gameSubject.subscribe((game) => { //store the subscribers into a variable, so that it can be unsubscribed later
       setBoard(game.board)
       setIsGameOver(game.isGameOver)
       setResult(game.result)
       setTurn(game.turn)
     })
     return () => subscribe.unsubscribe()
-  }, [])
+  }, [])  //pass dependencies in empty array because it will be excuted once when everything is mount
   return (
     <div className="container">
+      <h2 className="vertical-text">
+        <button onClick={resetGame}>
+          <span className="vertical-text"> RESET GAME</span>
+        </button>
+      </h2>
       {isGameOver && (
         <h2 className="vertical-text">
           GAME OVER
